@@ -1,0 +1,26 @@
+package com.juanjo.curso.springboot.di.factura.springboot_difactura.models;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Client {
+    private String name;
+    private String lastname;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+}
