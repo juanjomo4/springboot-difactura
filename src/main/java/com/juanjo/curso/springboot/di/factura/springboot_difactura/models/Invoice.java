@@ -10,10 +10,11 @@ import org.springframework.stereotype.Component;
 public class Invoice {
     @Autowired
     private Client client;
+
     // Usando @Value para inyectar valores desde el archivo de propiedades
-    
     @Value("${invoice.description}")
     private String description;
+    @Autowired
     private List<Item> items;
 
     public Client getClient() {
@@ -38,6 +39,22 @@ public class Invoice {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    // Método que calcula el total de la factura para mostrarlo en el JSON como "totalInvoice"
+    public double getTotalInvoice() {
+
+        // Forma tradicional de sumar los importes
+        // double total = 0.0;
+        // for (Item item : items) {
+        // total += item.getImporte();
+        // }
+
+        // Una forma de sumar los importes usando streams y el método reduce()
+        double total = items.stream()
+                .map(item -> item.getImporte())
+                .reduce(0.0, (suma, item) -> suma + item);
+        return total;
     }
 
 }
