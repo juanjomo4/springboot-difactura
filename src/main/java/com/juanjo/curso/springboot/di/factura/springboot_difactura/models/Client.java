@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+// import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Component
 /*
@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * SessionScope persiste durante toda la sesión del usuario.
  */
 @SessionScope
-@JsonIgnoreProperties({"targetSource","advisors"})
+// @JsonIgnoreProperties({"targetSource","advisors"})
 public class Client {
     //Usando @Value para inyectar valores desde el archivo de propiedades
     @Value("${client.name}")

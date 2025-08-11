@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+// import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -22,7 +22,7 @@ import jakarta.annotation.PreDestroy;
  * SessionScope persiste durante toda la sesión del usuario.
  */
 @RequestScope
-@JsonIgnoreProperties({"targetSource","advisors"})
+// @JsonIgnoreProperties({"targetSource","advisors"})
 public class Invoice {
 
     @Autowired
