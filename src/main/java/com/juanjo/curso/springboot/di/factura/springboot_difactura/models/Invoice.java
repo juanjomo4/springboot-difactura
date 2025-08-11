@@ -3,19 +3,44 @@ package com.juanjo.curso.springboot.di.factura.springboot_difactura.models;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 @Component
 public class Invoice {
+
     @Autowired
     private Client client;
 
     // Usando @Value para inyectar valores desde el archivo de propiedades
+    // @Value("${invoice.description.office}")
     @Value("${invoice.description}")
     private String description;
     @Autowired
+    @Qualifier("default")
     private List<Item> items;
+
+    /*
+     * PostConstruct se utiliza para indicar que este método debe ser ejecutado
+     * después de que se haya completado la inyección de dependencias.
+     */
+    @PostConstruct
+    public void init() {
+        System.out.println("Factura inicializada");
+    }
+
+    /*
+     * PreDestroy se utiliza para indicar que este método debe ser ejecutado
+     * antes de que el bean sea destruido.
+     */
+    @PreDestroy
+    public void destroy() {
+        System.out.println("Factura destruida");
+    }
 
     public Client getClient() {
         return client;
@@ -41,7 +66,8 @@ public class Invoice {
         this.items = items;
     }
 
-    // Método que calcula el total de la factura para mostrarlo en el JSON como "totalInvoice"
+    // Método que calcula el total de la factura para mostrarlo en el JSON como
+    // "totalInvoice"
     public double getTotalInvoice() {
 
         // Forma tradicional de sumar los importes
